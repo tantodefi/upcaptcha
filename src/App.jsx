@@ -40,12 +40,18 @@ function App() {
       await web3.eth.requestAccounts()
       const accounts = await web3.eth.getAccounts()
       console.log(accounts)
-
+      // TODO: Make the canvas here invisible/off screen and then also on each page load console.log all the saved UPs into console to easy inspect who has connected
+      // consider using https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Client-side_web_APIs/Client-side_storage to track if client has already completed captcha and then keep button selected (example use-case = whitelist) https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Client-side_web_APIs/Client-side_storage
+      const canvas = document.getElementById("b");
+      const ctx = canvas.getContext("2d");
+      ctx.fillText(accounts, 10, 10) 
       // Call fetch func
+      // TODO: Once successfully connected 1) change the the color of matrix rain to be pink 2) var matrix string in <canvas></canvas> to be UPaddress 3) keep a persistent log of the connected UPs somewhere invisible on canvas https://stackoverflow.com/questions/64628974/javascript-troubleshooting-in-canvas-using-console-log
       fetchProfile(accounts[0]).then((res) => {
         toast.dismiss(loadingToast)
         toast.success(`Got the data`, { icon: '🆙' })
         toast.success(`Data printed in the console`, { icon: '🦄' })
+
         console.log(res)
         setProfile(res)
         toast(`Welcome ${res.value.LSP3Profile.name}!`)
@@ -102,7 +108,7 @@ function App() {
           </div>
         </div>
       </div>
-
+      <canvas id="b"></canvas>
       <UPExtension />
     </>
   )
