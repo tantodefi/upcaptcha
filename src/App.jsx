@@ -3,12 +3,13 @@ import Web3 from 'web3'
 import { ERC725 } from '@erc725/erc725.js'
 import { CheckIcon, ChromeIcon, BraveIcon } from './components/icons'
 import upcaptchaLogo from '/upcaptcha.svg'
+import imgUrl from "/tantodefi_UPcardQR.jpg"
 import toast, { Toaster } from 'react-hot-toast'
 import lsp3ProfileSchema from '@erc725/erc725.js/schemas/LSP3ProfileMetadata.json'
 import Loading from './components/LoadingSpinner'
 import styles from './App.module.scss'
 
-const provider = window.lukso
+const provider = window.luksos
 const web3 = new Web3(provider)
 
 function App() {
@@ -82,8 +83,12 @@ function App() {
       {isLoading && <Loading />}
 
       <div className={styles.container}>
+      <h1>upCanvas</h1>
+      <imgUrl src={imgUrl} alt="tantodefi UPcard QR" />
+      <h2>by tantodefi</h2>
+      <h3>Generate animations on top of LUKSO nfts</h3>
         <CheckIcon />
-        <h3>Verify You Are Human</h3>
+        <h3>Solve upCapcha Anon</h3>
         <p className={styles.description}>
           upCaptcha by using Universal Profile Public Data (UPPD) confirms visitors are real without the data privacy concerns or spending time on solving puzzles.
         </p>
